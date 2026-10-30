@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>COMP5583 Portfolio — Sumi</title>
+<meta name="description" content="COMP5583 portfolio: one site, three iterations — from greybox structure to final interactive build." />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<style>
+  :root {
+    --ink: #14130f;
+    --paper: #f6f4ef;
+    --muted: #6d675c;
+    --line: #ddd7ca;
+    --accent: #b4501f;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: system-ui, -apple-system, "Segoe UI", "Noto Sans SC", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.6;
+    background-image: linear-gradient(var(--line) 1px, transparent 1px);
+    background-size: 100% 64px;
+    background-position: 0 -1px;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+  header.top {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 24px; padding: 22px 0 18px; border-bottom: 1px solid var(--ink);
+  }
+  .mark { font-family: var(--mono); font-size: 12px; letter-spacing: .18em; text-transform: uppercase; }
+  nav { display: flex; gap: 22px; }
+  nav a {
+    font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+  }
+  nav a:hover { color: var(--accent); }
+
+  .hero { padding: 88px 0 72px; }
+  .eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 26px;
+  }
+  h1 {
+    font-family: var(--serif); font-weight: 400; font-size: clamp(44px, 8vw, 92px);
+    line-height: .98; letter-spacing: -.02em; margin: 0 0 28px;
+  }
+  h1 em { font-style: italic; color: var(--accent); }
+  .lede { max-width: 46ch; font-size: 17px; color: #3d3a33; margin: 0; }
+
+  .grid { display: grid; gap: 18px; padding-bottom: 88px; }
+  @media (min-width: 760px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .card {
+    position: relative; display: flex; flex-direction: column; justify-content: space-between;
+    min-height: 260px; padding: 24px; text-decoration: none; color: inherit;
+    background: #fffdf9; border: 1px solid var(--ink);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .card:hover { transform: translateY(-4px); box-shadow: 6px 6px 0 var(--ink); }
+  .card .num { font-family: var(--mono); font-size: 11px; letter-spacing: .18em; color: var(--muted); }
+  .card h2 { font-family: var(--serif); font-weight: 400; font-size: 30px; margin: 34px 0 8px; }
+  .card p { margin: 0 0 24px; font-size: 14px; color: var(--muted); }
+  .card .go { font-family: var(--mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; }
+  .card:hover .go { color: var(--accent); }
+
+  .v0 { background: #f2f2ef; }
+  .v1 { background: #fbf7ee; }
+  .v2 { background: #14130f; color: #f6f4ef; border-color: #14130f; }
+  .v2 p, .v2 .num { color: #a9a49a; }
+  .v2:hover { box-shadow: 6px 6px 0 #b4501f; }
+
+  section.about { border-top: 1px solid var(--ink); padding: 56px 0 72px; display: grid; gap: 32px; }
+  @media (min-width: 760px) { section.about { grid-template-columns: 200px 1fr; } }
+  section.about h2 {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--muted); margin: 6px 0 0; font-weight: 500;
+  }
+  section.about p { margin: 0 0 16px; max-width: 62ch; }
+  section.about p:last-child { margin-bottom: 0; }
+
+  footer {
+    border-top: 1px solid var(--line); padding: 22px 0 40px;
+    display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: space-between;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .1em; color: var(--muted);
+    text-transform: uppercase;
+  }
+  a.plain { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+  a.plain:hover { color: var(--accent); border-color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <span class="mark">COMP5583 · Portfolio</span>
+    <nav>
+      <a href="#iterations">Iterations</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">Sumi — 2026</p>
+      <h1>One site,<br>three <em>iterations</em>.</h1>
+      <p class="lede">
+        The same portfolio, rebuilt three times. V0 fixes the structure, V1 sets the visual
+        language, V2 finishes it as a working interactive page. Every version stays live so the
+        decisions are still visible.
+      </p>
+    </section>
+
+    <section class="grid" id="iterations">
+      <a class="card v0" href="V0/">
+        <span class="num">00 — Greybox</span>
+        <div>
+          <h2>Structure</h2>
+          <p>Layout, hierarchy and content order, with no decoration to hide behind.</p>
+        </div>
+        <span class="go">Open V0 →</span>
+      </a>
+
+      <a class="card v1" href="V1/">
+        <span class="num">01 — Visual</span>
+        <div>
+          <h2>Voice</h2>
+          <p>Type scale, colour and rhythm applied to the greybox without changing the bones.</p>
+        </div>
+        <span class="go">Open V1 →</span>
+      </a>
+
+      <a class="card v2" href="V2/">
+        <span class="num">02 — Final</span>
+        <div>
+          <h2>Build</h2>
+          <p>The shipped version: motion, responsive behaviour and the finished case studies.</p>
+        </div>
+        <span class="go">Open V2 →</span>
+      </a>
+    </section>
+
+    <section class="about" id="about">
+      <h2>About</h2>
+      <div>
+        <p>
+          I study interaction design and build interfaces that stay readable under pressure.
+          This portfolio is itself the coursework: three passes at the same page, each one
+          answering a question the previous version could not.
+        </p>
+        <p>
+          V0 asked <em>what belongs on the page</em>. V1 asked <em>how should it sound</em>.
+          V2 asked <em>what should it feel like to use</em>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>COMP5583 · Portfolio</span>
+    <span><a class="plain" href="https://github.com/076eggtarts/COMP5583-portfolio">Source on GitHub</a></span>
+  </footer>
+</div>
+</body>
+</html>
