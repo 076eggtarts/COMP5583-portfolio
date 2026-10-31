@@ -1,6 +1,6 @@
 # V0 Personal Website
 
-Static single-page site. Open `dist/index.html` in the source checkout, or `index.html` inside a packaged `website/V0` folder. The page can also be served with any static HTTP server. No build step or backend is required.
+Static single-page site. Open `index.html` inside a packaged `website/V0` folder. The page can also be served with any static HTTP server. No build step or backend is required.
 
 The page contains Home, About, Projects, and Contact sections. Project 01 is a 2023 social practice project; Project 02 is a 2025 internship.
 
