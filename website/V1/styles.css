@@ -37,26 +37,32 @@
 @media(max-width:760px){.hero-art{min-height:670px}.path-schools a{display:block;min-height:0;padding:15px 0}.school-logo{width:min(240px,100%);max-height:none;margin-bottom:9px}.path-schools b{font-size:12px}}
 .header-inner{justify-content:flex-end}
 
-/* V1: the three few-shot patterns become case-study panels and wayfinding. */
+/* V1: the three demonstrated before/after patterns are applied to real V0 content. */
 .site-header{position:sticky;top:0;z-index:10;box-shadow:0 2px 12px #16344912}
+.skip-link{z-index:20}
 .site-header nav a{display:inline-flex;align-items:center;min-height:44px;border-bottom:2px solid transparent}
 .site-header nav a[aria-current="location"]{color:var(--ink);border-bottom-color:var(--orange)}
-main section[id]{scroll-margin-top:105px}
-.projects{background:#d8e9f2}
-.project-case{border:1px solid #afccdc;border-top:5px solid #bb755d;padding:0;margin-bottom:25px;overflow:hidden}
-.project-case .project-top{padding:19px 30px;border-bottom:1px solid #c7dce8}
-.project-case-header{padding:31px 30px 25px}
-.project-case-header h3{font-size:clamp(31px,3.5vw,48px);line-height:1.12;max-width:750px;margin:0 0 10px}
-.project-case-header .project-org{font-size:13px;margin:0}
-.project-case-grid{display:grid;grid-template-columns:minmax(220px,0.9fr) minmax(0,1.35fr);gap:0;border-top:1px solid #c7dce8}
-.case-goal,.case-role{padding:28px 30px 30px}
+main section[id],#main{scroll-margin-top:var(--anchor-offset,120px)}
+.project-card{padding:0;overflow:hidden}
+.project-card .project-top{padding:22px 30px}
+.project-case-header{padding:29px 30px 25px}
+.project-case-header h3{font-size:clamp(30px,3.1vw,44px);letter-spacing:-.025em;line-height:1.16;margin:0 0 12px}
+.project-case-header .project-org{margin:0;font-size:13px}
+.case-panels{display:grid;grid-template-columns:minmax(0,0.87fr) minmax(0,1.13fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.case-goal,.case-role{padding:27px 30px 29px;min-width:0}
 .case-goal{background:#1d4d66;color:#f4f9fc}
-.case-role{background:#f3f9fc}
-.case-label{display:block;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:18px}
-.case-goal .case-label{color:#b8dce9}.case-role .case-label{color:#9b624e}
-.case-goal p{font:clamp(21px,2.1vw,28px)/1.38 'DM Serif Display',Georgia,serif;margin:0}
-.case-role ul{margin:0;padding-left:21px;display:grid;gap:13px}
-.case-role li{font-size:15px;line-height:1.55;color:#2e5061;padding-left:5px}
-.case-role li::marker{color:#bb755d}
-.project-case .project-footer{padding:17px 30px;background:#fbfdff}
-@media(max-width:760px){.site-header nav{max-width:none}.site-header nav a{min-height:44px;padding-inline:4px}main section[id]{scroll-margin-top:125px}.project-case-grid{grid-template-columns:1fr}.project-case .project-top,.project-case-header,.case-goal,.case-role,.project-case .project-footer{padding-left:22px;padding-right:22px}.case-goal p{font-size:23px}}
+.case-role{background:#f2f8fc}
+.case-panels h4{margin:0 0 16px;font:700 11px/1.3 'DM Sans',Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase}
+.case-goal h4{color:#c5e3ee}.case-role h4{color:#8c4b36}
+.case-goal p{margin:0;font:clamp(20px,2vw,27px)/1.37 'DM Serif Display',Georgia,serif;overflow-wrap:anywhere}
+.case-role ul{margin:0;padding-left:20px;display:grid;gap:12px}
+.case-role li{font-size:15px;line-height:1.55;color:#2a4b5e;padding-left:4px;overflow-wrap:anywhere}
+.case-role li::marker{color:#aa5942}
+.project-card .project-footer{border:0;padding:17px 30px 20px}
+@media(max-width:760px){
+  .site-header nav{max-width:none;gap:0 13px}
+  .site-header nav a{min-height:44px;padding-inline:2px}
+  .case-panels{grid-template-columns:1fr}
+  .project-card .project-top,.project-case-header,.case-goal,.case-role,.project-card .project-footer{padding-left:22px;padding-right:22px}
+  .case-goal p{font-size:23px}
+}

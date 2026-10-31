@@ -1,22 +1,34 @@
 (function () {
+  const header = document.querySelector('.site-header');
   const sections = [...document.querySelectorAll('main section[id]')];
   const links = [...document.querySelectorAll('.site-header nav a[href^="#"]')];
-  let queued = false;
+  if (!header || !sections.length || !links.length) return;
+
   function update() {
-    const threshold = Math.max(180, window.innerHeight * 0.4);
-    let current = sections[0]?.id;
+    const headerHeight = header.getBoundingClientRect().height;
+    document.documentElement.style.setProperty('--anchor-offset', `${Math.ceil(headerHeight + 16)}px`);
+    const threshold = headerHeight + Math.max(90, window.innerHeight * 0.25);
+    let currentSectionId = sections[0].id;
     for (const section of sections) {
-      if (section.getBoundingClientRect().top <= threshold) current = section.id;
+      if (section.getBoundingClientRect().top <= threshold) currentSectionId = section.id;
     }
     for (const link of links) {
-      if (link.hash === '#' + current) link.setAttribute('aria-current', 'location');
+      if (link.hash === '#' + currentSectionId) link.setAttribute('aria-current', 'location');
       else link.removeAttribute('aria-current');
     }
-    queued = false;
   }
-  window.addEventListener('scroll', () => {
-    if (!queued) { queued = true; requestAnimationFrame(update); }
-  }, { passive: true });
-  window.addEventListener('resize', update);
+
+  let queued = false;
+  function scheduleUpdate() {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(() => {
+      queued = false;
+      update();
+    });
+  }
+  window.addEventListener('scroll', scheduleUpdate, { passive: true });
+  window.addEventListener('resize', scheduleUpdate);
+  window.addEventListener('pageshow', scheduleUpdate);
   update();
 })();
