@@ -33,9 +33,18 @@ Each version is deployed as its own Pages project with the publish root set to i
 | comp5583-v1 | `website/V1` | https://comp5583-v1.pages.dev |
 | comp5583-v2 | `website/V2` | https://comp5583-v2.pages.dev |
 
-To recreate them: **Workers & Pages → Create → Pages → Connect to Git**, pick this repo,
-framework preset **None**, build command *empty*, build output directory
-`website/V0` (respectively `website/V1`, `website/V2`).
+Deployed on 2026-10-31 by direct upload, each project uploading exactly its own version
+folder as the site root:
+
+```bash
+wrangler pages project create comp5583-v0 --production-branch main
+wrangler pages deploy website/V0 --project-name comp5583-v0 --branch main
+```
+
+(`v1` and `v2` are identical with their own folder.) To connect them to Git instead:
+**Workers & Pages → Create → Pages → Connect to Git**, pick this repo, framework preset
+**None**, build command *empty*, build output directory `website/V0`
+(respectively `website/V1`, `website/V2`).
 
 ## Notes
 
