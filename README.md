@@ -1,45 +1,45 @@
-# COMP5583 Portfolio
+# COMP5583 Portfolio — website
 
-Three iterations of the same portfolio site, kept side by side so the design process is visible:
+Three published iterations of one personal website. Each version is a standalone static
+site (no build step, no server, no login) published from its own folder.
 
 ```
 COMP5583-portfolio/
-├── index.html          # hub page, links to the three versions
-├── V0/                 # iteration 0 - structure / greybox
-│   ├── index.html
-│   ├── style.css
-│   └── assets/
-├── V1/                 # iteration 1 - visual design
-│   ├── index.html
-│   ├── style.css
-│   └── assets/
-└── V2/                 # iteration 2 - final interactive build
-    ├── index.html
-    ├── style.css
-    └── assets/
+├── index.html          # hub page linking to the three versions
+└── website/
+    ├── V0/             # index.html, styles.css, content.js, render.js, assets/
+    ├── V1/             # index.html, styles.css, content.js, render.js, nav.js, assets/
+    └── V2/             # index.html, styles.css, content.js, render.js, assets/
 ```
 
-## Live site
+## Published URLs (GitHub Pages, no login)
 
-- Hub: https://076eggtarts.github.io/COMP5583-portfolio/
-- V0: https://076eggtarts.github.io/COMP5583-portfolio/V0/
-- V1: https://076eggtarts.github.io/COMP5583-portfolio/V1/
-- V2: https://076eggtarts.github.io/COMP5583-portfolio/V2/
+| Version | URL |
+| --- | --- |
+| Hub | https://076eggtarts.github.io/COMP5583-portfolio/ |
+| V0 | https://076eggtarts.github.io/COMP5583-portfolio/website/V0/ |
+| V1 | https://076eggtarts.github.io/COMP5583-portfolio/website/V1/ |
+| V2 | https://076eggtarts.github.io/COMP5583-portfolio/website/V2/ |
 
-## Deploying with GitHub Pages
+Pages is served from `main` / repository root, so every push redeploys automatically.
 
-Pages is served straight from `main` / repository root, so every push is a deploy.
-Enable it once under **Settings → Pages → Source: Deploy from a branch → `main` / `(root)`**.
+## Cloudflare Pages
 
-## Deploying with Cloudflare Pages
+Each version is deployed as its own Pages project with the publish root set to its folder:
 
-1. Cloudflare dashboard → **Workers & Pages → Create → Pages → Connect to Git**
-2. Pick `COMP5583-portfolio`
-3. Framework preset: **None**; build command: *(empty)*; build output directory: `/`
-4. Deploy — preview + production URLs are generated automatically.
+| Project | Root directory | URL |
+| --- | --- | --- |
+| comp5583-v0 | `website/V0` | https://comp5583-v0.pages.dev |
+| comp5583-v1 | `website/V1` | https://comp5583-v1.pages.dev |
+| comp5583-v2 | `website/V2` | https://comp5583-v2.pages.dev |
 
-## Editing
+To recreate them: **Workers & Pages → Create → Pages → Connect to Git**, pick this repo,
+framework preset **None**, build command *empty*, build output directory
+`website/V0` (respectively `website/V1`, `website/V2`).
 
-Each version is self-contained: `index.html` + `style.css` + `assets/`. No build step, no
-dependencies, no CDN calls. Replace the placeholder copy (name, module details, project
-write-ups) and drop images into the matching `assets/` folder.
+## Notes
+
+- All asset and script references inside `website/V*/` are relative, so the same files work
+  from a repository subpath (GitHub Pages) and from a domain root (Cloudflare Pages).
+- `website/` sources are kept byte-for-byte as submitted; the only addition is this hub page
+  at the repository root.
